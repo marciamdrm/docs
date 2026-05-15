@@ -1,14 +1,62 @@
-| Status | Meaning |
-|---|---|
-| `pending` | Not started yet. Default status on creation. |
-| `in_progress` | Actively being worked on. |
-| `done` | Completed. |
+---
+title: "Error Handling"
+description: "Understanding error responses from the TaskFlow API."
+---
 
-<Note>
-  Status transitions are not enforced — you can set any valid status at any time.
-</Note>
+The TaskFlow API uses standard HTTP status codes. All error responses follow a
+consistent format.
 
-## Relationships
+## Error response format
 
-A project can have many tasks, but each task belongs to exactly one project.
-Deleting a task does not affect its parent project.
+```json
+{
+  "error": "Not Found",
+  "message": "No project found with project_id 'abc123'."
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `error` | `string` | Short error type |
+| `message` | `string` | Human-readable explanation |
+
+## HTTP status codes
+
+| Code | Meaning | Common Cause |
+|---|---|---|
+| `200` | OK | Request succeeded |
+| `201` | Created | Resource created successfully |
+| `400` | Bad Request | Missing required field or invalid value |
+| `401` | Unauthorized | Missing or invalid API key |
+| `404` | Not Found | Resource does not exist |
+
+## Common errors
+
+### 400 — Bad Request
+```json
+{
+  "error": "Bad Request",
+  "message": "The 'name' field is required and must be a non-empty string."
+}
+```
+
+### 401 — Unauthorized
+```json
+{
+  "error": "Unauthorized",
+  "message": "Missing or invalid API key. Provide a valid key in the Authorization header as: Bearer <api_key>"
+}
+```
+
+### 404 — Not Found
+```json
+{
+  "error": "Not Found",
+  "message": "No project found with project_id 'abc123'."
+}
+```
+
+<Tip>
+  Always save your `project_id` and `task_id` from creation responses — you'll
+  need them for all subsequent requests.
+</Tip>

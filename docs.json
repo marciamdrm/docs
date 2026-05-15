@@ -2,10 +2,6 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "TaskFlow API",
   "theme": "mint",
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#0069ED",
