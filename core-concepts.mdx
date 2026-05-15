@@ -1,0 +1,49 @@
+---
+title: "Core Concepts"
+description: "Understand the key building blocks of the TaskFlow API."
+---
+
+# Core Concepts
+
+## Projects
+
+A **project** is the top-level container in TaskFlow. All tasks must belong to a
+project. You need to create a project before creating any tasks.
+
+| Field | Type | Description |
+|---|---|---|
+| `project_id` | `uuid` | Unique identifier, generated automatically |
+| `name` | `string` | The name of the project (required) |
+| `description` | `string` | Optional description |
+| `created_at` | `datetime` | Timestamp of creation |
+
+## Tasks
+
+A **task** represents a unit of work inside a project.
+
+| Field | Type | Description |
+|---|---|---|
+| `task_id` | `uuid` | Unique identifier, generated automatically |
+| `project_id` | `uuid` | The project this task belongs to |
+| `title` | `string` | The title of the task (required) |
+| `description` | `string` | Optional description |
+| `status` | `enum` | `pending`, `in_progress`, or `done` |
+| `created_at` | `datetime` | Timestamp of creation |
+| `updated_at` | `datetime` | Timestamp of last update |
+
+## Task Statuses
+
+| Status | Meaning |
+|---|---|
+| `pending` | Not started yet. Default status on creation. |
+| `in_progress` | Actively being worked on. |
+| `done` | Completed. |
+
+<Note>
+  Status transitions are not enforced — you can set any valid status at any time.
+</Note>
+
+## Relationships
+
+A project can have many tasks, but each task belongs to exactly one project.
+Deleting a task does not affect its parent project.

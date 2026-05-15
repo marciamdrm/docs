@@ -1,0 +1,97 @@
+---
+title: "Quickstart"
+description: "Make your first TaskFlow API request in minutes."
+---
+
+# Quickstart
+
+This guide walks you through the core TaskFlow workflow: creating a project,
+adding a task, updating its status, and deleting it when done.
+
+<Note>
+  All requests require authentication. See [Authentication](/authentication) for details.
+</Note>
+
+## Step 1 — Create a project
+
+```bash
+curl -X POST "https://test-writechoice.onrender.com/projects" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "My First Project",
+    "description": "Testing the TaskFlow API."
+  }'
+```
+
+**Response:**
+```json
+{
+  "project_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "My First Project",
+  "description": "Testing the TaskFlow API.",
+  "created_at": "2025-05-12T10:30:00.000Z"
+}
+```
+
+<Note>
+  Save the `project_id` — you'll need it to create tasks.
+</Note>
+
+## Step 2 — Create a task
+
+```bash
+curl -X POST "https://test-writechoice.onrender.com/tasks" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "title": "Write introduction page",
+    "description": "Draft the overview and getting started sections."
+  }'
+```
+
+**Response:**
+```json
+{
+  "task_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+  "project_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "title": "Write introduction page",
+  "description": "Draft the overview and getting started sections.",
+  "status": "pending",
+  "created_at": "2025-05-12T10:35:00.000Z",
+  "updated_at": "2025-05-12T10:35:00.000Z"
+}
+```
+
+## Step 3 — Update the task status
+
+```bash
+curl -X PATCH "https://test-writechoice.onrender.com/tasks/f9e8d7c6-b5a4-3210-fedc-ba9876543210" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a" \
+  -H "Content-Type: application/json" \
+  -d '{"status": "in_progress"}'
+```
+
+## Step 4 — List all tasks
+
+```bash
+curl -X GET "https://test-writechoice.onrender.com/projects/a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a"
+```
+
+## Step 5 — Delete a task
+
+```bash
+curl -X DELETE "https://test-writechoice.onrender.com/tasks/f9e8d7c6-b5a4-3210-fedc-ba9876543210" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a"
+```
+
+<CardGroup cols={2}>
+  <Card title="API Reference" icon="code" href="/api-reference/create-a-project">
+    See all endpoints in detail.
+  </Card>
+  <Card title="Error Handling" icon="triangle-exclamation" href="/error-handling">
+    Understand error responses.
+  </Card>
+</CardGroup>

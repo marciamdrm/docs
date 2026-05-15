@@ -1,0 +1,41 @@
+---
+title: "Authentication"
+description: "How to authenticate your requests to the TaskFlow API."
+---
+
+# Authentication
+
+The TaskFlow API uses **Bearer token authentication**. Every request must include
+a valid API key in the `Authorization` header.
+
+## Your API Key 
+
+```
+tf-live-4a8f2c1e9b3d7e6a
+```
+
+## How to authenticate
+
+```bash
+Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a
+```
+
+## Example request
+
+```bash
+curl -X GET "https://test-writechoice.onrender.com/projects/YOUR_PROJECT_ID/tasks" \
+  -H "Authorization: Bearer tf-live-4a8f2c1e9b3d7e6a"
+```
+
+## Authentication errors
+
+```json
+{
+  "error": "Unauthorized",
+  "message": "Missing or invalid API key. Provide a valid key in the Authorization header as: Bearer <api_key>"
+}
+```
+
+<Warning>
+  Never share your API key publicly or commit it to version control.
+</Warning>

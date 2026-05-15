@@ -1,0 +1,14 @@
+| Status | Meaning |
+|---|---|
+| `pending` | Not started yet. Default status on creation. |
+| `in_progress` | Actively being worked on. |
+| `done` | Completed. |
+
+<Note>
+  Status transitions are not enforced — you can set any valid status at any time.
+</Note>
+
+## Relationships
+
+A project can have many tasks, but each task belongs to exactly one project.
+Deleting a task does not affect its parent project.
