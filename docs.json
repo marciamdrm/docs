@@ -12,33 +12,45 @@
     "light": "#4D9CFF",
     "dark": "#0050B4"
   },
-  "navigation": [
-    {
-      "group": "Getting Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "authentication",
-        "core-concepts"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/create-a-project",
-        "api-reference/create-a-task",
-        "api-reference/list-tasks-in-a-project",
-        "api-reference/update-a-task",
-        "api-reference/delete-a-task"
-      ]
-    },
-    {
-      "group": "Resources",
-      "pages": [
-        "error-handling"
-      ]
-    }
-  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "authentication",
+              "core-concepts"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "error-handling"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "API Reference",
+            "pages": [
+              "api-reference/create-a-project",
+              "api-reference/create-a-task",
+              "api-reference/list-tasks-in-a-project",
+              "api-reference/update-a-task",
+              "api-reference/delete-a-task"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "api": {
     "baseUrl": "https://test-writechoice.onrender.com",
     "auth": {
